@@ -1,0 +1,26 @@
+[project]
+name = "telegram-widgets"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "4515_В.Д.Болотин", email = "slava.bolotin.07@mail.ru" }
+]
+requires-python = ">=3.13.7"
+dependencies = [
+    "aiogram>=3.31.0",
+    "colorama>=0.4.6",
+    "pydantic-settings>=2.16.2",
+    "structlog>=26.1.0",
+]
+
+[project.scripts]
+telegram-widgets = "bot:main"
+
+[build-system]
+requires = ["uv_build>=0.13.7,<0.14.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "bot"
+module-root = ""
