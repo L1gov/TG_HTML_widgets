@@ -1,0 +1,221 @@
+:root {
+    color-scheme: light dark;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --page: #edf1f5;
+    --surface: #ffffff;
+    --text: #233047;
+    --muted: #6a778b;
+    --line: #e1e6ed;
+    --empty: #f7f9fb;
+    --key: #e9eef4;
+    --accent: #2877d4;
+    --accent-soft: #edf5ff;
+    --correct: #347c58;
+    --present: #a97516;
+    --absent: #687486;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --page: #131a24;
+        --surface: #1b2533;
+        --text: #edf2f8;
+        --muted: #a1afc2;
+        --line: #344154;
+        --empty: #202c3c;
+        --key: #303e52;
+        --accent: #79b7ff;
+        --accent-soft: #253c58;
+        --correct: #347c58;
+        --present: #a97516;
+        --absent: #526075;
+    }
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--page);
+    color: var(--text);
+}
+
+button { font: inherit; }
+
+.game {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    padding: 14px 12px;
+    background: var(--surface);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+}
+
+h1 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1;
+}
+
+.language {
+    padding: 4px 5px;
+    border-radius: 5px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 9px;
+    font-weight: 750;
+    letter-spacing: 1px;
+}
+
+.subtitle {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.new-game {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-height: 34px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 11px;
+    font-weight: 650;
+    cursor: pointer;
+}
+
+.restart-icon { font-size: 18px; line-height: 1; }
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 12px 0;
+    font-size: 11px;
+    line-height: 16px;
+}
+
+.game-info p { margin: 0; }
+.attempt { color: var(--muted); white-space: nowrap; }
+
+.board {
+    display: grid;
+    gap: 5px;
+    width: clamp(175px, 58vw, 216px);
+    margin: 0 auto;
+}
+
+.board-row {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 5px;
+}
+
+.tile {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    background: var(--empty);
+    font-size: clamp(20px, 6vw, 24px);
+    font-weight: 750;
+    line-height: 1;
+}
+
+.tile.filled {
+    border-color: var(--muted);
+    background: var(--surface);
+}
+
+.tile.current {
+    border: 2px solid var(--accent);
+    background: var(--accent-soft);
+}
+
+/* Общие цветовые состояния для клеток и клавиш. */
+.correct { background: var(--correct); }
+.present { background: var(--present); }
+.absent { background: var(--absent); }
+.tile.correct, .tile.present, .tile.absent { border-color: transparent; }
+.correct, .present, .absent { color: #ffffff; }
+
+.legend {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px 12px;
+    margin: 12px 0 16px;
+    padding: 0;
+    color: var(--muted);
+    font-size: 9px;
+    line-height: 12px;
+    list-style: none;
+}
+
+.legend li { display: flex; align-items: center; gap: 4px; }
+.swatch { width: 7px; height: 7px; border-radius: 2px; }
+
+.keyboard { display: grid; gap: 5px; }
+
+.key-row {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+} 
+
+.key {
+    flex: 1;
+    min-width: 0;
+    height: 36px;
+    padding: 0;
+    border: 0;
+    border-radius: 5px;
+    background: var(--key);
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.key.correct { background: var(--correct); color: #ffffff; }
+.key.present { background: var(--present); color: #ffffff; }
+.key.absent { background: var(--absent); color: #ffffff; }
+.key.delete { flex: 1.5; font-size: 19px; }
+.key.enter {
+    flex: 1.8;
+    padding: 0 3px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 10px;
+}
+
+button:hover { filter: brightness(.94); }
+button:active { transform: translateY(1px); }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Отступы и рамка нужны только для просмотра отдельного файла. */
+@media (min-width: 480px) {
+    body { padding: 32px 16px; }
+    .game { border: 1px solid var(--line); border-radius: 18px; }
+}

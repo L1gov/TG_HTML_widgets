@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>Wordle — пять букв</title>
+    <link rel="stylesheet" href="wordle_widget.css">
+    <script src="wordle_widget.js" defer></script>
+</head>
+<body>
+    <main class="game" aria-labelledby="game-title">
+        <header class="header">
+            <div>
+                <h1 id="game-title">wordle<span class="language">РУ</span></h1>
+                <p class="subtitle">Пять букв. Шесть попыток.</p>
+            </div>
+            <button class="new-game" id="new-game" type="button">
+                <span class="restart-icon" aria-hidden="true">↻</span>Новая игра
+            </button>
+        </header>
+
+        <div class="game-info">
+            <p id="result" role="status">Какое слово загадано?</p>
+            <p class="attempt" id="attempt">Попытка <strong>3</strong> из 6</p>
+        </div>
+
+        <!-- Статичный пример двух попыток и незавершённого ввода.
+             Для пустой партии убери буквы и классы состояний клеток и клавиш. -->
+        <div class="board" id="board" role="group">
+            <div class="board-row" role="group">
+                <div class="tile present">П</div>
+                <div class="tile correct">А</div>
+                <div class="tile present">Л</div>
+                <div class="tile absent">К</div>
+                <div class="tile correct">А</div>
+            </div>
+            <div class="board-row" role="group">
+                <div class="tile present">М</div>
+                <div class="tile correct">А</div>
+                <div class="tile absent">Р</div>
+                <div class="tile absent">К</div>
+                <div class="tile correct">А</div>
+            </div>
+            <div class="board-row" role="group">
+                <div class="tile filled">Л</div>
+                <div class="tile filled">А</div>
+                <div class="tile filled">М</div>
+                <div class="tile current"></div>
+                <div class="tile"></div>
+            </div>
+            <div class="board-row" role="group">
+                <div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
+            </div>
+            <div class="board-row" role="group">
+                <div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
+            </div>
+            <div class="board-row" role="group">
+                <div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
+            </div>
+        </div>
+
+        <ul class="legend">
+            <li><span class="swatch correct" aria-hidden="true"></span>На месте</li>
+            <li><span class="swatch present" aria-hidden="true"></span>Есть в слове</li>
+            <li><span class="swatch absent" aria-hidden="true"></span>Нет в слове</li>
+        </ul>
+
+        <!-- Кнопки пока без обработчиков. data-key — значение для твоей логики. -->
+        <div class="keyboard" id="keyboard" role="group">
+            <div class="key-row">
+                <button class="key" type="button" data-key="Й">Й</button>
+                <button class="key" type="button" data-key="Ц">Ц</button>
+                <button class="key" type="button" data-key="У">У</button>
+                <button class="key absent" type="button" data-key="К">К</button>
+                <button class="key" type="button" data-key="Е">Е</button>
+                <button class="key" type="button" data-key="Н">Н</button>
+                <button class="key" type="button" data-key="Г">Г</button>
+                <button class="key" type="button" data-key="Ш">Ш</button>
+                <button class="key" type="button" data-key="Щ">Щ</button>
+                <button class="key" type="button" data-key="З">З</button>
+                <button class="key" type="button" data-key="Х">Х</button>
+                <button class="key" type="button" data-key="Ъ">Ъ</button>
+            </div>
+            <div class="key-row">
+                <button class="key" type="button" data-key="Ф">Ф</button>
+                <button class="key" type="button" data-key="Ы">Ы</button>
+                <button class="key" type="button" data-key="В">В</button>
+                <button class="key correct" type="button" data-key="А">А</button>
+                <button class="key present" type="button" data-key="П">П</button>
+                <button class="key absent" type="button" data-key="Р">Р</button>
+                <button class="key present" type="button" data-key="Л">Л</button>
+                <button class="key" type="button" data-key="О">О</button>
+                <button class="key" type="button" data-key="Д">Д</button>
+                <button class="key" type="button" data-key="Ж">Ж</button>
+                <button class="key" type="button" data-key="Э">Э</button>
+            </div>
+            <div class="key-row">
+                <button class="key enter" type="button" data-key="enter">Ввод</button>
+                <button class="key" type="button" data-key="Я">Я</button>
+                <button class="key" type="button" data-key="Ч">Ч</button>
+                <button class="key" type="button" data-key="С">С</button>
+                <button class="key present" type="button" data-key="М">М</button>
+                <button class="key" type="button" data-key="И">И</button>
+                <button class="key" type="button" data-key="Т">Т</button>
+                <button class="key" type="button" data-key="Ь">Ь</button>
+                <button class="key" type="button" data-key="Б">Б</button>
+                <button class="key" type="button" data-key="Ю">Ю</button>
+                <button class="key delete" type="button" data-key="delete">⌫</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
